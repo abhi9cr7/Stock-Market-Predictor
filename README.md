@@ -1,8 +1,8 @@
 # Predicting stock market movement based on Tweets
-There are thousands of people who take twitter to talk about the stock market everyday. They use tweets to communicate with well renowned pundits and this can be a pretty good indicator of market movement. Using text mining and predictive modeling for predicting such market swings will be fun. 
+There are thousands of people who tweet about stock market everyday. They communicate with well renowned pundits on twitter about selling and buying opportunities. This can be a pretty good indicator of stock market movement. Using text mining and predictive modeling for predicting such market swings will be fun. 
 
 ## Aim:
-The goal of this project is to predict the market trends based on tweets from notable stock market pundits.
+The main goal of this project is to predict the market trends based on tweets from notable stock market pundits.
 
 ## Steps:
 ### Its a 5 step process. 
