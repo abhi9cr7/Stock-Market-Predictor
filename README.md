@@ -7,7 +7,7 @@ The main goal of this project is to predict the market trends based on tweets fr
 ## Steps:
 ### Its a 5 step process. 
 1) Study correlation between the sentiment of the tweets and stock price movement. 
-2) Once the correlations is confirmaed, identify few twitter handles of pundits who are good in communicating the stock market changes.
+2) Once the correlations is confirmed, identify few twitter handles of pundits who are good in communicating the stock market changes.
 3) Building a scrapper to get tweets and use the same text mining principles to prepare the dataset. 
 4) Clean the dataset and use machines learning algorithms to predict the stock market trend.
 5) Work on improving the Accuracy, Specificity and Sensitivity of the model.
