@@ -3,31 +3,45 @@ library(tm)
 require(twitteR)
 require(ROAuth)
 library(wordcloud)
+library(rtweet)
 
 # LOAD TWITTER CREDENTIALS
-api.key = "Jgw0oLUmjFenqkmxPIvvGW4Px"
-api.secret = "4l1YKTabgg6vZp0g8mjAccXb1LpTRxMze3VxbETWbgwCj4poB4"
+appname='CS688'
+key = "Jgw0oLUmjFenqkmxPIvvGW4Px"
+secret = "4l1YKTabgg6vZp0g8mjAccXb1LpTRxMze3VxbETWbgwCj4poB4"
+access_token='3039950507-cCzRqhwYTsfC2Sxvq6CsY9yKFblRs0PyZYVCUQv'
+access_secret='D1v68mQBMWUhayowXEPnrWicQqj8ioIzfQy88UakplIBU'
+
+create_token(
+   app = appname,
+   consumer_key = key,
+   consumer_secret = secret,
+   access_token = access_token,
+   access_secret = access_secret
+)
+
+
 
 setup_twitter_oauth(api.key, api.secret, 
                     access_token = NULL, access_secret = NULL)
 
 # A. Get Tweets for Gainers
-t.CAPN <- searchTwitter('$CAPN', n = 100)
-t.XGTI <- searchTwitter('$XGTI', n = 100)
-t.EBIO <- searchTwitter('$EBIO', n = 100)
-save(t.CAPN, file="t.CAPN")
-save(t.XGTI, file="t.XGTI")
-save(t.EBIO, file="t.EBIO")
-gainers <- c(t.CAPN,t.XGTI,t.EBIO)
+t.GOOG <- search_tweets('$GOOG', n = 100,include_rts = FALSE)
+t.AAPL <- search_tweets('$AAPL', n = 100,include_rts=FALSE)
+t.FB <- search_tweets('$FB', n = 100,include_rts=FALSE)
+save(t.GOOG, file="t.GOOG")
+save(t.AAPL, file="t.AAPL")
+save(t.FB, file="t.FB")
+gainers <- c(t.GOOG,t.AAPL,t.FB)
 
 #Get Tweets for Losers
-t.BGMD <- searchTwitter('$BGMD', n = 100)
-t.ENZN <- searchTwitter('$ENZN', n = 100)
-t.IMDZ <- searchTwitter('$IMDZ', n = 100)
-save(t.BGMD, file="t.BGMD")
-save(t.ENZN, file="t.ENZN")
-save(t.IMDZ, file="t.IMDZ")
-losers <- c(t.BGMD,t.ENZN,t.IMDZ)
+t.VRTX <- search_tweets('$VRTX', n = 100)
+t.MSFT <- search_tweets('$MSFT', n = 100)
+t.NVDA <- search_tweets('$NVDA', n = 100)
+save(t.VRTX, file="t.VRTX")
+save(t.MSFT, file="t.MSFT")
+save(t.NVDA, file="t.NVDA")
+losers <- c(t.VRTX,t.MSFT,t.NVDA)
 
 #B) Create corpora for tweets
 get.corpus <- function (tweets) 
@@ -163,20 +177,20 @@ barplot(table(Losers.scores), main="Sentiment Analysis for Losers",
 library(quantmod)
 library(googleVis)
  
-getSymbols("CAPN")  
-getSymbols("EBIO")
+getSymbols("GOOG")  
+getSymbols("FB")
  
-CAPN.dframe = data.frame(CAPN['2016-04-20'])
-EBIO.dframe = data.frame(EBIO['2016-04-20'])
+GOOG.dframe = data.frame(GOOG['2016-04-20'])
+FB.dframe = data.frame(FB['2016-04-20'])
  
-Open = c(as.numeric(CAPN.dframe$CAPN.Open),as.numeric(EBIO.dframe$EBIO.Open))
-High = c(as.numeric(CAPN.dframe$CAPN.High),as.numeric(EBIO.dframe$EBIO.High))
-Low = c(as.numeric(CAPN.dframe$CAPN.Low),as.numeric(EBIO.dframe$EBIO.Low))
-Close = c(as.numeric(CAPN.dframe$CAPN.Close),as.numeric(EBIO.dframe$EBIO.Close))
-Volume = c(as.numeric(CAPN.dframe$CAPN.Volume),as.numeric(EBIO.dframe$EBIO.Volume))
-Adjusted = c(as.numeric(CAPN.dframe$CAPN.Adjusted),as.numeric(EBIO.dframe$EBIO.Adjusted))
+Open = c(as.numeric(GOOG.dframe$GOOG.Open),as.numeric(FB.dframe$FB.Open))
+High = c(as.numeric(GOOG.dframe$GOOG.High),as.numeric(FB.dframe$FB.High))
+Low = c(as.numeric(GOOG.dframe$GOOG.Low),as.numeric(FB.dframe$FB.Low))
+Close = c(as.numeric(GOOG.dframe$GOOG.Close),as.numeric(FB.dframe$FB.Close))
+Volume = c(as.numeric(GOOG.dframe$GOOG.Volume),as.numeric(FB.dframe$FB.Volume))
+Adjusted = c(as.numeric(GOOG.dframe$GOOG.Adjusted),as.numeric(FB.dframe$FB.Adjusted))
 
-stocks.data = data.frame(Stocks=c("CAPN","EBIO"),Open,High,Low,Close)
+stocks.data = data.frame(Stocks=c("GOOG","FB"),Open,High,Low,Close)
 
 
 chart1 <- gvisBarChart(stocks.data)
