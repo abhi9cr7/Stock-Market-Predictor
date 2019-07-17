@@ -57,6 +57,9 @@ writeCorpus(data.corpus.gainers,path = "Corpus.Gainers")
 data.corpus.losers <- get.corpus(losers)
 writeCorpus(data.corpus.losers,path= "Corpus.Losers")
 
+# Data Corpus doesn't work anymore. Get other corporal function to get Tweets data
+
+
 #C Pre-Processing
 trans.corpus <- function (data.corpus) {
   data.corpus <- tm_map(data.corpus, content_transformer(removePunctuation))
