@@ -7,10 +7,10 @@ library(rtweet)
 
 # LOAD TWITTER CREDENTIALS
 appname='CS688'
-key = "Jgw0oLUmjFenqkmxPIvvGW4Px"
-secret = "4l1YKTabgg6vZp0g8mjAccXb1LpTRxMze3VxbETWbgwCj4poB4"
-access_token='3039950507-cCzRqhwYTsfC2Sxvq6CsY9yKFblRs0PyZYVCUQv'
-access_secret='D1v68mQBMWUhayowXEPnrWicQqj8ioIzfQy88UakplIBU'
+key = ""
+secret = ""
+access_token='-'
+access_secret=''
 
 create_token(
    app = appname,
